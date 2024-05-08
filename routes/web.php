@@ -57,4 +57,5 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/products/{id}', [ProductsController::class, 'destroy'])->name('products.destroy')->middleware('permission:delete-products');
 });
 
+
 require __DIR__ . '/auth.php';
