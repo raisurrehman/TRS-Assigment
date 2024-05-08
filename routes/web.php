@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UserProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('profile', [UserProfileController::class, 'index'])->name('profile')->middleware('permission:view-users');
 
 });
 
