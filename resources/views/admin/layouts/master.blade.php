@@ -188,6 +188,27 @@
             </li>
             @endcan
 
+            @can('view-categories')
+            <li class="nav-item">
+              <a href="{{ route('categories') }}" class="nav-link {{ $menu_active == 'categories' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-folder"></i>
+                <p>
+                  Categories
+                </p>
+              </a>
+            </li>
+            @endcan
+
+            @can('view-products')
+            <li class="nav-item">
+              <a href="{{ route('products') }}" class="nav-link {{ $menu_active == 'products' ? 'active' : '' }}">
+                <i class="nav-icon fas fa-box"></i>
+                <p>
+                  Products
+                </p>
+              </a>
+            </li>
+            @endcan
 
             @can('view-roles')
             <li class="nav-item">
