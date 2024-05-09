@@ -47,14 +47,13 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'roles' => 'required|array|min:1',
+            'role' => 'required',
         ], [
             'name.required' => 'The name field is required.',
             'email.required' => 'The email field is required.',
             'email.email' => 'Please enter a valid email address.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
-            'roles.required' => 'At least one role is required.',
         ]);
 
         if ($validator->fails()) {
@@ -69,10 +68,8 @@ class UserController extends Controller
 
         $user->roles()->detach();
 
-        foreach ($request->roles as $roleId) {
-            $role = AppRole::find($roleId);
-            $user->assignRole($role);
-        }
+        $role = AppRole::find($request->role);
+        $user->assignRole($role);
 
         return response()->json(['message' => 'User created successfully'], 201);
     }
@@ -93,13 +90,12 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'roles' => 'required|array|min:1',
+            'role' => 'required',
         ], [
             'name.required' => 'The name field is required.',
             'email.required' => 'The email field is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'The email address is already in use.',
-            'roles.required' => 'At least one role is required.',
         ]);
 
         if ($validator->fails()) {
@@ -115,10 +111,8 @@ class UserController extends Controller
 
         $user->roles()->detach();
 
-        foreach ($request->roles as $roleId) {
-            $role = AppRole::find($roleId);
-            $user->assignRole($role);
-        }
+        $role = AppRole::find($request->role);
+        $user->assignRole($role);
 
         return response()->json(['message' => 'User updated successfully'], 201);
     }
