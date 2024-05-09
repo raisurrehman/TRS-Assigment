@@ -1,0 +1,26 @@
+.product-image-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.product-image {
+    max-width: 100px;
+    height: 70px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.product-name {
+    font-weight: bold;
+    font-size: 16px;
+    /* You can add additional styles for the product name here */
+}
+
+.select2-container .select2-selection--single {
+
+    height: auto !important; /* Change height to auto */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
