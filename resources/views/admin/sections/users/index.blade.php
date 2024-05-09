@@ -61,8 +61,8 @@
                             <label for="role">Role</label>
                         </div>
                         <div class="col-md-10 form-group">
-                            <select class="select2 form-control" multiple="multiple" data-placeholder="Select Roles"
-                                name="roles[]" style="width: 100%;">
+                            <select class="form-control select2 select2-hidden-accessible" name="role"
+                                style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                             </select>
                             <span class="text-danger" id="roles-error"></span>
                         </div>
@@ -123,8 +123,8 @@
                             <label for="role">Role</label>
                         </div>
                         <div class="col-md-10 form-group">
-                            <select class="select2 form-control" multiple="multiple" data-placeholder="Select Roles"
-                                name="roles[]" style="width: 100%;">
+                            <select class="form-control select2 select2-hidden-accessible" name="role"
+                                style="width: 100%;" data-select2-id="1" tabindex="-1" aria-hidden="true">
                             </select>
 
                             <span class="text-danger" id="roles-error-edit"></span>
@@ -205,7 +205,7 @@
                 type: 'GET',
                 success: function (response) {
                     var roles = response.roles;
-                    var selectRoles = $('#add-user-form select[name="roles[]"]');
+                    var selectRoles = $('#add-user-form select[name="role"]');
                     selectRoles.empty();
 
                     $.each(roles, function (index, role) {
@@ -237,7 +237,7 @@
                     $('#edit-user-id').val(userId);
 
                     var roles = response.roles;
-                    $('#editUserModal select[name="roles[]"]').empty();
+                    $('#editUserModal select[name="role"]').empty();
                     $.each(roles, function (index, role) {
                         var option = $('<option>', {
                             value: role.id,
@@ -248,10 +248,10 @@
                             option.attr('selected', 'selected');
                         }
 
-                        $('#editUserModal select[name="roles[]"]').append(option);
+                        $('#editUserModal select[name="role"]').append(option);
                     });
 
-                    $('#editUserModal select[name="roles[]"]').select2();
+                    $('#editUserModal select[name="role"]').select2();
                     $('#editUserModal').modal('show');
                 },
                 error: function (xhr, status, error) {
@@ -298,7 +298,7 @@
                     toastr.success('User updated successfully.');
                     $('#editUserModal').modal('hide');
                     dataTable.ajax.reload();
-                },
+                },a
                 error: function (xhr, status, error) {
                     if (xhr.responseJSON && xhr.responseJSON.errors) {
                         var errors = xhr.responseJSON.errors;
